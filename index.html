@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Assignment-3</title>
+    <link rel ="stylesheet" href ="style.css">
+    <script src = "d3.v7.min.js"></script>
+
+    <script src ="network.js"></script>
+    <style>
+        #Paper_Title{
+            position: absolute;
+            top: 1vh;
+            left: 30vh;
+            font-size: 12pt;
+            font-family: sans-serif;
+        }
+        svg{
+            width: 90vw;
+            height: 90vh;
+        }
+        #controls {
+            position: absolute;
+            top: 1vh;
+            right: 1vw;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #detailsPanel {
+            position: absolute;
+            top: 25vh;
+            right: 1vw;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id ="Paper_Title"></div>
+<div id="controls">
+    <label for="linkStrength">Link Strength:</label>
+    <input type="range" id="linkStrength" min="0" max="1" step="0.1" value="0.7"><br>
+
+    <label for="collideStrength">Collide Strength:</label>
+    <input type="range" id="collideStrength" min="0" max="1" step="0.1" value="0.5"><br>
+
+    <label for="chargeStrength">Charge Strength:</label>
+    <input type="range" id="chargeStrength" min="-100" max="100" step="1" value="-30"><br>
+
+    <p>Node Size:</p>
+    
+    <input type="radio" id="degree" name="nodeSize" value="degree">
+    <label for="degree">Degree</label>
+    
+</div>
+<div id="detailsPanel"></div>
+<script>
+    d3.json("author_network1.json").then(function(data){
+        let svg = d3.select('body').append("svg").attr("viewBox","0 0 1500 1400")
+        console.log(data)
+        simulate(data,svg) // main function to make network
+    })
+</script>
+    
+</body>
+</html>
